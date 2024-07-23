@@ -8,13 +8,33 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        "primary": "#633CFF",
+        "secondary": "#BEADFF",
+        "tetiary": "#EFEBFF",
+        "black": "#333333",
+        "brown": "#737373",
+        "gray": "#D9D9D9",
+        "slate": "#FAFAFA",
+        "red": "#FF3939",
+        "github": "#1A1A1A",
+        "youtube": "#EE3939",
+        "linkedin": "#2D68FF",
+        "facebook": "#1877F2",
+        "x": "#000000",
+        "pinterest": "#BD081C",
+        "whatsapp": "#075E54",
+        "tumblr": "#35465D",
+        "reddit": "#FF4500",
+        "twitch": "#9146FF",
+        "discord": "5865F2",
       },
+      boxShadow: {
+        "input-active" : "0px 0px 32px 0px #633CFF40"
+      }
     },
   },
   plugins: [],
 };
+
 export default config;
