@@ -1,19 +1,21 @@
 'use client'
 
-import { InputHTMLAttributes, SVGProps, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, InputHTMLAttributes, SetStateAction, useState } from "react";
 
-interface inputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface inputProps {
     className?: string;
     disabled?: boolean;
     label?: string;
     name: string;
     type: string;
-    error: string;
+    value: string | number;
+    onChange: (value: string) => void;
+    error: string | undefined;
     placeholder?: string;
     leftIcon?: any
 }
 
-export default function Input({ className, disabled, label, name, type, error, placeholder, leftIcon }: inputProps) {
+export default function Input({ className, disabled, label, name, value, type, onChange, error, placeholder, leftIcon }: inputProps) {
     const [focus, setFocus] = useState(false)
 
 
@@ -22,7 +24,7 @@ export default function Input({ className, disabled, label, name, type, error, p
             { label ? <label htmlFor={name} className="text-[12px]">{label}</label> : "" }
 
             <div className={`flex items-center gap-2 relative rounded-[8px] h-[48px] p-1 px-3 border border-gray duration-500
-                ${error ? "border-red text-red" : "border-gray"}
+                ${error && !focus ? "border-red text-red" : "border-gray"}
                 ${focus ? "border-primary shadow-input-active" : "border-gray"}
             `}>
                 <span>{ leftIcon }</span>
@@ -34,12 +36,14 @@ export default function Input({ className, disabled, label, name, type, error, p
                     name={name}
                     id={name}
                     type={type}
+                    value={value}
                     placeholder={placeholder}
                     onFocus={() => setFocus(true)}
                     onBlur={() => setFocus(false)}
+                    onChange={(e) => onChange(e.target.value)}
                 />
 
-                { error ? <p className="absolute right-4 text-[12px]">{error}</p> : "" }
+                { error && !focus ? <p className="absolute right-2 px-2 text-[12px] bg-white/[0.8] backdrop-blur-sm">{error}</p> : "" }
             </div>
         </div>
     )
