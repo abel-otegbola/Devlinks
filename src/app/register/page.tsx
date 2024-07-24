@@ -16,7 +16,7 @@ export default function Login() {
                 <form className="flex flex-col gap-5">
                     <div>
                         <h1 className="font-bold xl:text-[32px]">Create account</h1>
-                        <p className="mt-2 mb-6">Let’s get you started sharing your links!</p>
+                        <p className="mt-2 mb-6">Let&apos;s get you started sharing your links!</p>
                     </div>
                     
                     <Input name="email" label="Email address" type="email" error="Input field" placeholder="e.g alex@email.com" leftIcon={<Envelope weight="fill" size={24}/>}/>
