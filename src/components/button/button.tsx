@@ -19,8 +19,10 @@ export default function Button({ variant, className, size, disabled, children }:
             ${variants[variant || "primary"]}
             ${className} 
             ${disabled ? "opacity-[0.25]" : ""}
-            ${size === "full" ? "w-full" : "w-[227px]"}
-        `}>
+            ${size === "full" ? "w-full" : ""}
+        `}
+        disabled={disabled}
+        >
             { children }
         </button>
     )
