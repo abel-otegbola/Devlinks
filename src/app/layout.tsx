@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
+import AuthProvider from "../context/useAuth"
 
 const instrmentSans = Instrument_Sans({ subsets: ["latin"] });
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${instrmentSans.className} text-black bg-slate`}>{children}</body>
+      <AuthProvider>
+        <body className={`${instrmentSans.className} text-black bg-slate`}>{children}</body>
+      </AuthProvider>
     </html>
   );
 }
