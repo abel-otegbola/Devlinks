@@ -1,3 +1,4 @@
+'use client'
 import Button from "@/components/button/button";
 import Header from "@/components/header/header";
 import Input from "@/components/input/input";

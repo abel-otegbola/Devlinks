@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, ChangeEventHandler, InputHTMLAttributes, SetStateAction, useState } from "react";
+import { useState } from "react";
 
 interface inputProps {
     className?: string;

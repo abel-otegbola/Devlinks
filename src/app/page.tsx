@@ -8,14 +8,14 @@ import Link from "next/link";
 import { FormEvent, useContext, useState } from "react"
 
 export default function Homepage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const { signIn, loading } = useContext<any>(AuthContext)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const { signIn, loading } = useContext<any>(AuthContext)
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    signIn(email, password)
-  }
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        signIn(email, password)
+    }
 
     return (
         <div className="min-h-screen flex sm:items-center justify-center">
