@@ -16,7 +16,7 @@ export default function Tab ({ to, label, icon }: tabProps) {
     return (
         <Link
             href={to}
-            className={`flex items-center justify-center gap-2 w-[130px] h-[46px] p-[11px_27px] hover:text-primary font-semibold rounded-[8px]
+            className={`flex items-center justify-center gap-2 h-[46px] p-[11px_27px] hover:text-primary font-semibold rounded-[8px]
                 ${pathname === to ? "bg-tetiary text-primary" : ""}
             `}
         >
