@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${instrmentSans.className} text-black`}>{children}</body>
+      <body className={`${instrmentSans.className} text-black bg-slate`}>{children}</body>
     </html>
   );
 }
