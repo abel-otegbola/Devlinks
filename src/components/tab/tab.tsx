@@ -21,7 +21,7 @@ export default function Tab ({ to, label, icon }: tabProps) {
             `}
         >
             <span>{icon}</span>
-            <span>{label}</span>
+            <span className="sm:inline hidden">{label}</span>
         </Link>
     )
 }

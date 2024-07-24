@@ -19,7 +19,7 @@ export default function Button({ variant, className, size, disabled, children }:
             ${variants[variant || "primary"]}
             ${className} 
             ${disabled ? "opacity-[0.25]" : ""}
-            ${size === "full" ? "w-full" : ""}
+            ${size === "full" ? "w-full" : "sm:w-fit w-full"}
         `}
         disabled={disabled}
         >

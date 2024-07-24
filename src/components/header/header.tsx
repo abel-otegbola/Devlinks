@@ -1,5 +1,5 @@
 'use client'
-import { Link, UserCircle } from "@phosphor-icons/react";
+import { Eye, Link, UserCircle } from "@phosphor-icons/react";
 import Image from "next/image";
 import Tab from "../tab/tab";
 import Button from "../button/button";
@@ -29,7 +29,10 @@ export default function Header() {
                 }
             </nav>
 
-            <Button variant="secondary">Preview</Button>
+            <Button variant="secondary" className="w-fit">
+                <span className="sm:inline hidden">Preview</span>
+                <span className="sm:hidden inline"><Eye size={16} /></span>
+            </Button>
         </div>
     )
 }
