@@ -36,8 +36,8 @@ export default function Links() {
                                     <span className="font-bold text-lg"> = Link #{link.id}</span>
                                     <button>Remove</button>
                                 </div>
-                                <Input type="text" name="platform" label="Platform" error="" />
-                                <Input type="text" name="link" label="Link" error="" />
+                                <Input value="" onChange={() => {}} type="text" name="platform" label="Platform" error="" />
+                                <Input value="" onChange={() => {}} type="text" name="link" label="Link" error="" />
                             </div>
                         ))
                     }
