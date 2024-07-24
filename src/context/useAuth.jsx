@@ -3,6 +3,7 @@ import { app } from "../firebase/firebase";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from 'react';
 import { useLocalStorage } from "../customHooks/useLocalStorage"
+import { Toaster, toast } from "react-hot-toast";
 
 export const AuthContext = createContext(null);
 
@@ -58,10 +59,20 @@ const AuthProvider = ({ children }) => {
         })
     }, [setUser]);
 
+    useEffect(() => {
+        if (popup?.type === "success") {
+            toast.success(popup.msg)
+        }
+        if (popup?.type === "error") {
+            toast.error(popup.msg);
+        }
+      }, [popup]);
+
     return (
         <AuthContext.Provider value={{ user, popup, loading, setPopup, signIn, signUp, logOut }}>
-            {children
-        }</AuthContext.Provider>
+            <Toaster containerClassName="p-8" />
+            {children}
+        </AuthContext.Provider>
     );
 }
 
