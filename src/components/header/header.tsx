@@ -13,12 +13,12 @@ type navTab =  {
 
 export default function Header() {
     const navTabs: navTab[] = [
-        { id: 0, label: "Links", to: "/dashboard/links", icon: <Link /> },
-        { id: 0, label: "Profile details", to: "/dashboard/profile-details", icon: <UserCircle /> }
+        { id: 0, label: "Links", to: "/links", icon: <Link /> },
+        { id: 0, label: "Profile details", to: "/profile-details", icon: <UserCircle /> }
     ]
 
     return (
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between bg-white p-6 rounded-[8px]">
             <Image src="/images/logo-full.svg" width={150} height={30} alt="logo" />
 
             <nav className="flex items-center">
