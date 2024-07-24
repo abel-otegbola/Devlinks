@@ -4,8 +4,17 @@ import Input from "@/components/input/input";
 import { Envelope, LockKey } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
+// import { useContext } from "react"
+// import { AuthContext } from "../../context/useAuth"
 
 export default function Login() {
+    // const { signIn, loading, error } = useContext(AuthContext)
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault() 
+        console.log(e.target)
+    }
+
     return (
         <div className="min-h-screen flex items-center justify-center">
             <div className="sm:w-[476px] w-full p-12">
@@ -13,7 +22,7 @@ export default function Login() {
                     <Image src="/images/logo-full.svg" width={150} height={30} alt="logo" />
                 </div>
 
-                <form className="flex flex-col gap-5">
+                <form action={handleSubmit} className="flex flex-col gap-5">
                     <div>
                         <h1 className="font-bold xl:text-[32px]">Login</h1>
                         <p className="mt-2 mb-6">Add your details below to get back into the app</p>
@@ -25,7 +34,7 @@ export default function Login() {
 
                     <Button size="full">Login</Button>
                     
-                    <p className="text-center">Don't have an account? <Link href={"/register"} className="text-primary">Create account</Link></p>
+                    <p className="text-center">Don&apos;t have an account? <Link href={"/register"} className="text-primary">Create account</Link></p>
                 </form>
             </div>
         </div>
