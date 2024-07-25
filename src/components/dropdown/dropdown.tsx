@@ -48,7 +48,7 @@ export default function Dropdown({ className, disabled, label, name, options, va
 
             <div className={`p-4 rounded-[8px] absolute top-[64px] left-0 w-full bg-white h-[200px] shadow-md overflow-y-auto ${open ? "block" : "hidden"}`}>
               {
-                optionsList?.map((option: any) => (
+                options?.map((option: any) => (
                   <button key={option.id} onClick={() => setOpen(false)} className={`p-4 flex items-center gap-2 hover:text-primary border-b border-slate ${option.platform === value ? "text-primary" : ""}`}>
                     {option.icon} 
                     {option.platform}
