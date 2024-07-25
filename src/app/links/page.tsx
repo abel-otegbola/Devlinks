@@ -55,7 +55,7 @@ export default function Links() {
 
                 <div className="flex flex-col gap-6 py-6">
                     {
-                        editLinks.map((item: userlink, i: number) => (
+                        editLinks?.map((item: userlink, i: number) => (
                             <LinkCard key={item.id} link={item} i={i} deleteLink={deleteLink}/>
                         ))
                     }

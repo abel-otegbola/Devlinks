@@ -1,8 +1,8 @@
 'use client'
 import { useState } from "react"
-import { Dropdown } from "../dropdown/dropdown"
 import Input from "../input/input"
 import { GithubLogo } from "@phosphor-icons/react"
+import Dropdown from "../dropdown/dropdown"
 
 export default function LinkCard({ link, i, deleteLink }: any) {
     const [selectedLink, setSelectedLink] = useState<any>()
@@ -16,18 +16,10 @@ export default function LinkCard({ link, i, deleteLink }: any) {
             <Dropdown
                 placeholder="Platform"
                 value={selectedLink || ""}
-                onChange={(value) => {
-                    if (value) {
-                        () => setSelectedLink(value)
-                    } else {
-                        
-                    }
-                }}
-                options={[{ id: 0, platform: "Github", icon: <GithubLogo /> }].map((item: any) => ({
-                    icon: item.icon,
-                    label: item.platform,
-                    value: item.platform,
-                }))}
+                name="dropdown"
+                onChange={() => {}}
+                error=""
+                options={[{ id: 0, platform: "Github", icon: <GithubLogo /> }]}
             />
             <Input value="" onChange={() => {}} type="text" name="platform" label="Platform" error="" />
             
