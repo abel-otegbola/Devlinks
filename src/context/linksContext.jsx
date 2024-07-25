@@ -77,7 +77,7 @@ export default function LinksProvider({ children }) {
 
     return (
         <LinksContext.Provider value={{ links, loading, addLinks, getAllLinks, updateLinks }}>
-            <Toaster containerClassName="p-8" containerStyle={{ top: "auto", bottom: 20 }} toastOptions={{ style: { backgroundColor: "#101010", color: "#fff" } }} />
+            <Toaster containerClassName="p-8" />
             { children }
         </LinksContext.Provider>
     )

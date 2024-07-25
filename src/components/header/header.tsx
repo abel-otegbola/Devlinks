@@ -14,7 +14,7 @@ type navTab =  {
 export default function Header() {
     const navTabs: navTab[] = [
         { id: 0, label: "Links", to: "/links", icon: <Link /> },
-        { id: 0, label: "Profile details", to: "/profile-details", icon: <UserCircle /> }
+        { id: 1, label: "Profile details", to: "/profile-details", icon: <UserCircle /> }
     ]
 
     return (

@@ -1,38 +1,40 @@
 'use client'
 
-import { ArrowRight, DiscordLogo, FacebookLogo, GithubLogo, LinkedinLogo, PinterestLogo, RedditLogo, TumblrLogo, TwitchLogo, WhatsappLogo, XLogo, YoutubeLogo } from "@phosphor-icons/react";
+import { ArrowRight, DiscordLogo, FacebookLogo, GithubLogo, InstagramLogo, LinkedinLogo, PinterestLogo, RedditLogo, TumblrLogo, TwitchLogo, WhatsappLogo, XLogo, YoutubeLogo } from "@phosphor-icons/react";
 import Link from "next/link";
 import { ReactElement } from "react";
 
 
-export default function SocialLink({ label, href }: {label: string, href: string}) {
+export default function SocialLink({ label, href }: any) {
 
     const socials: Record<string, ReactElement> = {
-        github: <GithubLogo />,
-        youtube: <YoutubeLogo />,
-        linkedin: <LinkedinLogo /> ,
-        facebook: <FacebookLogo /> ,
-        x: <XLogo />,
-        pinterest: <PinterestLogo /> ,
-        whatsapp: <WhatsappLogo /> ,
-        tumblr: <TumblrLogo /> ,
-        reddit: <RedditLogo /> ,
-        twitch: <TwitchLogo /> ,
-        discord: <DiscordLogo /> ,
+        Github: <GithubLogo />,
+        Youtube: <YoutubeLogo />,
+        Linkedin: <LinkedinLogo /> ,
+        Instagram: <InstagramLogo /> ,
+        Facebook: <FacebookLogo /> ,
+        X: <XLogo />,
+        Pinterest: <PinterestLogo /> ,
+        Whatsapp: <WhatsappLogo /> ,
+        Tumblr: <TumblrLogo /> ,
+        Reddit: <RedditLogo /> ,
+        Twitch: <TwitchLogo /> ,
+        Discord: <DiscordLogo /> ,
     }
 
     const colors: Record<string, string> = {
-        "github": "#1A1A1A",
-        "youtube": "#EE3939",
-        "linkedin": "#2D68FF",
-        "facebook": "#1877F2",
-        "x": "#000000",
-        "pinterest": "#BD081C",
-        "whatsapp": "#075E54",
-        "tumblr": "#35465D",
-        "reddit": "#FF4500",
-        "twitch": "#9146FF",
-        "discord": "5865F2",
+        "Github": "#1A1A1A",
+        "Youtube": "#EE3939",
+        "Linkedin": "#2D68FF",
+        "Facebook": "#1877F2",
+        "Instagram": "#1833F2",
+        "X": "#000000",
+        "Pinterest": "#BD081C",
+        "Whatsapp": "#075E54",
+        "Tumblr": "#35465D",
+        "Reddit": "#FF4500",
+        "Twitch": "#9146FF",
+        "Discord": "5865F2",
     }
 
     return (

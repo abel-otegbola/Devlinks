@@ -4,6 +4,7 @@ import Header from "@/components/header/header";
 import LinkCard from "@/components/linkCard/linkCard";
 import PreviewSkeleton from "@/components/previewSkeleton/previewSkeleton";
 import { LinksContext } from "@/context/linksContext";
+import { AuthContext } from "@/context/useAuth";
 import { Spinner } from "@phosphor-icons/react";
 import { useContext, useState } from "react";
 import { uuid } from "uuidv4";
@@ -17,18 +18,29 @@ export interface userlink {
 
 export default function Links() {
     const { links, addLinks, updateLinks, loading } = useContext(LinksContext)
-    const [editLinks, setEditLinks] = useState<userlink[]>(links?.list) 
+    const [editLinks, setEditLinks] = useState<userlink[]>(links?.list || []) 
+    const {user} = useContext<any>(AuthContext)
 
     const addNewLink = () => {
-        setEditLinks([ ...links, { id: uuid(), platform: "github", href: "" } ])
+        setEditLinks([ ...editLinks, { id: uuid(), platform: "", href: "" } ])
+    }
+
+    const editNewLink = (id: string, platform: string, href: string ) => {
+        setEditLinks(editLinks?.map((item: any) => {
+            if(item.id === id) {
+                return { id: item.id, platform, href }
+            }
+            else return item
+        }
+        ))
     }
 
     const deleteLink = (id: string) => {
-        setEditLinks(editLinks.filter(item => item.id === id))
+        setEditLinks(editLinks.filter(item => item.id !== id))
     }
 
     const submitProfile = () => {
-        editLinks.length === 0 ? addLinks({ ...links, list: editLinks }) : updateLinks({ ...links, list: editLinks })
+        links.length === 0 ? addLinks({ id: uuid(), user: user.email, ...links, list: editLinks }) : updateLinks(links?.id, { ...links, list: editLinks })
     }
 
     return (
@@ -36,8 +48,8 @@ export default function Links() {
         <Header />
         <div className="flex flex-wrap gap-6 mt-6">
 
-            <div className="md:w-[40%] sm:flex hidden min-h-screen items-center justify-center bg-white rounded-[8px]">
-                <PreviewSkeleton />
+            <div className="md:w-[40%] sm:flex h-screen hidden sticky top-12 left-0 justify-center bg-white rounded-[8px]">
+                <PreviewSkeleton links={editLinks}/>
             </div>
             
             <div className="flex-1 bg-white rounded-[8px] min-h-screen p-[40px]">
@@ -56,13 +68,13 @@ export default function Links() {
                 <div className="flex flex-col gap-6 py-6">
                     {
                         editLinks?.map((item: userlink, i: number) => (
-                            <LinkCard key={item.id} link={item} i={i} deleteLink={deleteLink}/>
+                            <LinkCard key={item.id} link={item} edit={editNewLink} i={i} deleteLink={deleteLink}/>
                         ))
                     }
                 </div>
                 
-                <div className="flex justify-end p-[40px] border border-transparent border-t-gray mt-[80px]">
-                    <Button disabled={editLinks?.length === 0} onClick={submitProfile}>{loading ? <Spinner size={18} className="animate-spin" /> : "Save"}</Button>
+                <div className="flex justify-end p-[40px] border border-transparent border-t-gray mt-[80px]"  onClick={submitProfile}>
+                    <Button disabled={editLinks?.length === 0}>{loading ? <Spinner size={18} className="animate-spin" /> : "Save"}</Button>
                 </div>
             </div>
 

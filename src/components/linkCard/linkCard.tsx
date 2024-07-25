@@ -1,11 +1,16 @@
 'use client'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Input from "../input/input"
-import { GithubLogo } from "@phosphor-icons/react"
+import { GithubLogo, GoogleLogo, InstagramLogo, WhatsappLogo, XLogo, YoutubeLogo } from "@phosphor-icons/react"
 import Dropdown from "../dropdown/dropdown"
 
-export default function LinkCard({ link, i, deleteLink }: any) {
-    const [selectedLink, setSelectedLink] = useState<any>()
+export default function LinkCard({ link, i, edit, deleteLink }: any) {
+    const [platform, setPlatform] = useState<string>()
+    const [href, setHref] = useState<string | number>()
+
+    useEffect(() => {
+        edit(link.id, platform || "", href || "")
+    }, [ platform, href ])
 
     return (
         <div className="bg-slate flex gap-4 flex-col p-5 border border-gray/[0.3] rounded-[8px]">
@@ -15,13 +20,20 @@ export default function LinkCard({ link, i, deleteLink }: any) {
             </div>
             <Dropdown
                 placeholder="Platform"
-                value={selectedLink || ""}
+                value={platform || ""}
                 name="dropdown"
-                onChange={() => {}}
+                onChange={setPlatform}
                 error=""
-                options={[{ id: 0, platform: "Github", icon: <GithubLogo /> }]}
+                options={[
+                    { id: 0, platform: "Github", icon: <GithubLogo /> },
+                    { id: 1, platform: "Youtube", icon: <YoutubeLogo /> },
+                    { id: 2, platform: "Instagram", icon: <InstagramLogo /> },
+                    { id: 3, platform: "Gmail", icon: <GoogleLogo /> },
+                    { id: 4, platform: "X", icon: <XLogo /> },
+                    { id: 5, platform: "Whatsapp", icon: <WhatsappLogo /> },
+                ]}
             />
-            <Input value="" onChange={() => {}} type="text" name="platform" label="Platform" error="" />
+            <Input value={href || ""} onChange={setHref} type="text" name="href" label="Link" error="" />
             
         </div>
     )
