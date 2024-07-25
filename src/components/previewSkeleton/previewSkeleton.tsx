@@ -21,8 +21,8 @@ export default function PreviewSkeleton({ links }: any) {
                         ))
                     }
                     {
-                        links.length < 5 ?
-                        [...Array(5-links.length)].map((item: number) => (
+                        links?.length < 5 ?
+                        [...Array(5-links?.length)].map((item: number) => (
                             <p key={item} className="bg-[#EEEEEE] rounded-[8px] h-[44px] w-full"></p>
                         ))
                         : 
