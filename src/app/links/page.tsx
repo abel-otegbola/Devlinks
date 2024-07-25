@@ -62,7 +62,7 @@ export default function Links() {
                 </div>
                 
                 <div className="flex justify-end p-[40px] border border-transparent border-t-gray mt-[80px]">
-                    <Button disabled={editLinks.length === 0} onClick={submitProfile}>{loading ? <Spinner size={18} className="animate-spin" /> : "Save"}</Button>
+                    <Button disabled={editLinks?.length === 0} onClick={submitProfile}>{loading ? <Spinner size={18} className="animate-spin" /> : "Save"}</Button>
                 </div>
             </div>
 
