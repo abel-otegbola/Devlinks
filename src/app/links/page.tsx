@@ -1,14 +1,35 @@
 'use client'
 import Button from "@/components/button/button";
 import Header from "@/components/header/header";
-import Input from "@/components/input/input";
+import LinkCard from "@/components/linkCard/linkCard";
 import PreviewSkeleton from "@/components/previewSkeleton/previewSkeleton";
+import { LinksContext } from "@/context/linksContext";
+import { Spinner } from "@phosphor-icons/react";
+import { useContext, useState } from "react";
+import { uuid } from "uuidv4";
 // import WelcomeScreen from "@/components/welcomeScreen/welcomeScreen";
 
+export interface userlink {
+    id: string;
+    platform: string;
+    href: string;
+}
+
 export default function Links() {
-    const links = [
-        { id: 1, label: "github", link: "" }
-    ]
+    const { links, addLinks, updateLinks, loading } = useContext(LinksContext)
+    const [editLinks, setEditLinks] = useState<userlink[]>(links?.list) 
+
+    const addNewLink = () => {
+        setEditLinks([ ...links, { id: uuid(), platform: "github", href: "" } ])
+    }
+
+    const deleteLink = (id: string) => {
+        setEditLinks(editLinks.filter(item => item.id === id))
+    }
+
+    const submitProfile = () => {
+        editLinks.length === 0 ? addLinks({ ...links, list: editLinks }) : updateLinks({ ...links, list: editLinks })
+    }
 
     return (
         <div className="sm:p-4 bg-slate">
@@ -25,27 +46,23 @@ export default function Links() {
                     <h1 className="text-[32px] mb-6 font-bold">Customize your links</h1>
                     <p>Add/edit/remove links below and then share all your profiles with the world!</p>
                 </div>
-                <Button variant="secondary" size="full">+ Add new link</Button>
+
+                <div onClick={addNewLink}>
+                    <Button variant="secondary" size="full">+ Add new link</Button>
+                </div>
 
                 {/* <WelcomeScreen /> */}
 
-                <div className="py-6">
+                <div className="flex flex-col gap-6 py-6">
                     {
-                        links.map((link:any) => (
-                            <div key={link.id} className="bg-slate flex gap-4 flex-col p-5">
-                                <div className="flex justify-between items-center">
-                                    <span className="font-bold text-lg"> = Link #{link.id}</span>
-                                    <button>Remove</button>
-                                </div>
-                                <Input value="" onChange={() => {}} type="text" name="platform" label="Platform" error="" />
-                                <Input value="" onChange={() => {}} type="text" name="link" label="Link" error="" />
-                            </div>
+                        editLinks.map((item: userlink, i: number) => (
+                            <LinkCard key={item.id} link={item} i={i} deleteLink={deleteLink}/>
                         ))
                     }
                 </div>
                 
-                <div className="flex justify-end">
-                    <Button disabled={true} >Save</Button>
+                <div className="flex justify-end p-[40px] border border-transparent border-t-gray mt-[80px]">
+                    <Button disabled={editLinks.length === 0} onClick={submitProfile}>{loading ? <Spinner size={18} className="animate-spin" /> : "Save"}</Button>
                 </div>
             </div>
 

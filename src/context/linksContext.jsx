@@ -1,14 +1,16 @@
+'use client'
 import { createContext, useContext, useEffect, useState } from "react"
 import { useLocalStorage } from "../customHooks/useLocalStorage"
 import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
 import { db } from "../firebase/firebase"
-import { AuthContext } from "../customHooks/useAuth"
+import { AuthContext } from "./useAuth"
+import { Toaster, toast } from "react-hot-toast"
 
 
 export const LinksContext = createContext()
 
 export default function LinksProvider({ children }) {
-    const [Links, setLinkss] = useLocalStorage("Links", [])
+    const [links, setLinkss] = useLocalStorage("links", [])
     const [popup, setPopup] = useState()
     const [loading, setLoading] = useState(false)
     const {user} = useContext(AuthContext)
@@ -64,8 +66,18 @@ export default function LinksProvider({ children }) {
         getAllLinks()
     }, [])
 
+    useEffect(() => {
+        if (popup?.type === "success") {
+            toast.success(popup.msg)
+        }
+        if (popup?.type === "error") {
+            toast.error(popup.msg);
+        }
+      }, [popup]);
+
     return (
-        <LinksContext.Provider value={{ Links, popup, setPopup, loading, addLinks, getAllLinks, updateLinks }}>
+        <LinksContext.Provider value={{ links, loading, addLinks, getAllLinks, updateLinks }}>
+            <Toaster containerClassName="p-8" containerStyle={{ top: "auto", bottom: 20 }} toastOptions={{ style: { backgroundColor: "#101010", color: "#fff" } }} />
             { children }
         </LinksContext.Provider>
     )
