@@ -19,7 +19,7 @@ export default function Header() {
 
     return (
         <div className="flex items-center justify-between bg-white p-6 rounded-[8px]">
-            <Image src="/images/logo-full.svg" width={150} height={30} alt="logo" />
+            <Image src="/images/logo-full.svg" width={150} height={30} alt="logo" className="md:w-[150px] w-[80px]" />
 
             <nav className="flex items-center">
                 {
@@ -29,10 +29,10 @@ export default function Header() {
                 }
             </nav>
 
-            <Button variant="secondary" className="w-fit">
-                <span className="sm:inline hidden">Preview</span>
-                <span className="sm:hidden inline"><Eye size={16} /></span>
-            </Button>
+            <Link href="/preview" className="bg-white text-primary focus:bg-tetiary hover:bg-tetiary/[0.8] border border-primary rounded-[8px] h-[40px] p-2 w-fit">
+                <p className="sm:block hidden">Preview</p>
+                <p className="sm:hidden block"><Eye size={20} /></p>
+            </Link>
         </div>
     )
 }
